@@ -1,0 +1,9 @@
+name: OneInTheChamber
+author: YellowPhoenix18
+version : 1.0
+api-version: 1.13
+
+main: de.yellowphoenix18.oitc.OITC
+
+commands:
+   oitc:
