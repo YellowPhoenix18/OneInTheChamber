@@ -15,16 +15,18 @@ public class MoveListener implements Listener {
 	public void on(PlayerMoveEvent e) {
 		Player player = e.getPlayer();
 		
-		if(PluginUtils.gameStatus == GameStatus.PREGAME) {
-			if(player.getLocation().getY() <= 0) {
-				PluginUtils.killPlayer(player, null);
-			}
-			
+		if(PluginUtils.gameStatus == GameStatus.PREGAME) {		
 			if(PluginUtils.alive.containsKey(player.getUniqueId().toString())) {
 				Location form = e.getFrom();
 				Location to = e.getTo();
 				
 				e.setTo(new Location(form.getWorld(), form.getX(), to.getY(), form.getZ(), to.getYaw(), to.getPitch()));;
+			}
+		} else if(PluginUtils.gameStatus == GameStatus.GAME) {
+			if(PluginUtils.alive.containsKey(player.getUniqueId().toString())) {
+				if(player.getLocation().getY() <= 0) {
+					PluginUtils.killPlayer(player, null);
+				}
 			}
 		}
 	}

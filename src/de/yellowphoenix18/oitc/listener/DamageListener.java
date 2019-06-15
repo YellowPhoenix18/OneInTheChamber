@@ -16,21 +16,23 @@ public class DamageListener implements Listener {
 	
 	@EventHandler
 	public void on(ProjectileHitEvent e) {
-		if(e.getEntity() instanceof Arrow) {
-			Arrow arrow = (Arrow) e.getEntity();
-			
-			if(e.getHitEntity() != null) {
-				if(e.getHitEntity() instanceof Player) {
-					Player player = (Player) e.getHitEntity();
-					Player killer = (Player) arrow.getShooter();
-					
-					PluginUtils.killPlayer(player, killer);
+		if(PluginUtils.gameStatus == GameStatus.GAME) {
+			if(e.getEntity() instanceof Arrow) {
+				Arrow arrow = (Arrow) e.getEntity();
+				
+				if(e.getHitEntity() != null) {
+					if(e.getHitEntity() instanceof Player) {
+						Player player = (Player) e.getHitEntity();
+						Player killer = (Player) arrow.getShooter();
+						
+						PluginUtils.killPlayer(player, killer);
+						arrow.remove();
+					}
+				} else {
 					arrow.remove();
 				}
-			} else {
-				arrow.remove();
-			}
-		}	
+			}	
+		}
 	}
 	
 	@EventHandler

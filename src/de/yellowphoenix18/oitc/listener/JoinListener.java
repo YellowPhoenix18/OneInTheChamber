@@ -18,6 +18,7 @@ public class JoinListener implements Listener {
 		Player player = e.getPlayer();
 		
 		player.setGameMode(GameMode.SURVIVAL);
+		player.setHealth(20.0);
 		player.getInventory().clear();
 		player.teleport(PluginUtils.locConfig.getLocation("lobby"));
 		

@@ -154,6 +154,10 @@ public class Tasks {
 				
 				if(gameTime == 0) {
 					Bukkit.getScheduler().cancelTask(game);
+					for(Player all : Bukkit.getOnlinePlayers()) {
+						all.getInventory().clear();
+						all.setHealth(20.0);
+					}
 					endgame(winKills());
 				}
 				
